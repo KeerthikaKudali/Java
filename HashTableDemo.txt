@@ -1,0 +1,33 @@
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.Hashtable;
+import java.util.Scanner;
+public class HashTableDemo { 
+ public static void main(String[] args) { 
+ try { 
+ FileInputStream fis=new FileInputStream("info.txt");
+ Scanner sc=new Scanner(fis).useDelimiter("\t");
+ Hashtable<String,String> ht=new Hashtable<String,String>();
+ String str,strArray[];
+ while(sc.hasNext()) { 
+ str=sc.nextLine();//reading names
+ strArray=str.split("\t");
+ ht.put(strArray[1], strArray[0]);
+ } 
+ System.out.println("Hash Table:"+ht);
+ Scanner sc1=new Scanner(System.in);
+ System.out.println("Enter a number: ");
+ String no=sc1.nextLine();
+ if(ht.containsKey(no)) { 
+ System.out.println("Name is: "+ht.get(no));
+ } 
+ else { 
+ System.out.println("Number not found");
+ } 
+ } 
+ catch(FileNotFoundException e) { 
+ System.out.println(e);
+ } 
+ }
+}
